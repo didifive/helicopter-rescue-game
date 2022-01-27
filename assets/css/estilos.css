@@ -140,7 +140,23 @@ h3 {
 	text-align:center;
 	padding:10px;
 	padding-top: 100px;
+}
 
+#mobile-buttons {
+	width: 50px;
+	height: 200px;
+	position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+	left: 890px;
+	top: 215px;
+  font-family: Titulo;
+  font-size: 40px;
+  text-shadow:#000 -2px -2px;
+  color: #ff9900;
+  opacity: .85;
 }
 
 @keyframes play {

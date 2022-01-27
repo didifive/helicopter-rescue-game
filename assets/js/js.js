@@ -1,14 +1,5 @@
 function start() { // Inicio da função start()
 
-	$("#inicio").hide();
-	
-	$("#fundoGame").append("<div id='jogador' class='anima1'></div>")
-		.append("<div id='inimigo1' class='anima2'></div>")
-		.append("<div id='inimigo2'></div>")
-		.append("<div id='amigo' class='anima3'></div>")
-		.append("<div id='placar'></div>")
-		.append("<div id='energia'></div>");
-
 	//Principais variáveis do jogo
 	let jogo = {};
 	let velocidade=5;
@@ -34,7 +25,27 @@ function start() { // Inicio da função start()
 	const somPerdido=document.getElementById("somPerdido");
 	const somResgate=document.getElementById("somResgate");
 	
-	musica.addEventListener("ended", function(){ musica.currentTime = 0; musica.play(); }, false);
+	$("#inicio").hide();
+	
+	$("#fundoGame").append("<div id='jogador' class='anima1'></div>")
+		.append("<div id='inimigo1' class='anima2'></div>")
+		.append("<div id='inimigo2'></div>")
+		.append("<div id='amigo' class='anima3'></div>")
+		.append("<div id='placar'></div>")
+		.append("<div id='energia'></div>");
+	if ($.browser.mobile) {
+		$("#fundoGame").append("<div id='mobile-buttons'></div>");
+		$("#mobile-buttons").html(
+			"<div id='buttonW'>↑</div>"
+			+ "<div id='buttonS'>↓</div>"
+			+ "<div id='buttonD'>D</div>"
+		);
+		$("#buttonW").bind("tap", moveJogadorParaCima);
+		$("#buttonS").bind("tap", moveJogadorParaBaixo);
+		$("#buttonD").on("click", disparo);
+	}
+
+	musica.addEventListener("ended", function(){musica.currentTime = 0; musica.play();}, false);
 	musica.play();
 	
 	jogo.pressionou = [];
@@ -67,19 +78,27 @@ function start() { // Inicio da função start()
 
 	function movejogador() {
 		if (jogo.pressionou[TECLA.W] || jogo.pressionou[TECLA.UP]) {
-			var topo = parseInt($("#jogador").css("top"));
-			$("#jogador").css("top",topo-10);
-			if (topo<=0) 	$("#jogador").css("top",topo+10);
+			moveJogadorParaCima();
 		}
 		if (jogo.pressionou[TECLA.S] || jogo.pressionou[TECLA.DOWN]) {
-			var topo = parseInt($("#jogador").css("top"));
-			$("#jogador").css("top",topo+10);	
-			if (topo>=434) $("#jogador").css("top",topo-10);
+			moveJogadorParaBaixo();
 		}
 		if (jogo.pressionou[TECLA.D] || jogo.pressionou[TECLA.SPACE]) {
 			disparo();	
 		}
 	} // fim da função movejogador()
+
+	function moveJogadorParaCima() {
+		var topo = parseInt($("#jogador").css("top"));
+		$("#jogador").css("top",topo-10);
+		if (topo<=0) $("#jogador").css("top",topo+10);
+	}
+
+	function moveJogadorParaBaixo() {
+		var topo = parseInt($("#jogador").css("top"));
+		$("#jogador").css("top",topo+10);	
+		if (topo>=434) $("#jogador").css("top",topo-10);
+	}
 
 	function moveinimigo1() {
 		posicaoX = parseInt($("#inimigo1").css("left"));
@@ -309,8 +328,12 @@ function start() { // Inicio da função start()
 		$("#amigo").remove();
 		
 		$("#fundoGame").append("<div id='fim'></div>");
-		
-		$("#fim").html("<h1> Game Over </h1><p>Sua pontuação foi: " + pontos + "</p>" + "<div id='reinicia' onClick=reiniciaJogo()><h3>Jogar Novamente</h3></div>");
+		$("#fim").html(
+			"<h1> Game Over </h1><p>Sua pontuação foi: "
+			+ pontos
+			+ "</p>"
+			+ "<div id='reinicia' onClick=reiniciaJogo()><h3>Jogar Novamente</h3></div>"
+		);
 	} // Fim da função gameOver();
 
 } // Fim da função start

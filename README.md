@@ -34,7 +34,8 @@ Projeto desenvolvido com instruções de [Denilson Bonatti] na trilha de estudo 
 
 Abaixo seguem modificações feitas em relação ao projeto base:
 * Adicionado `overflow: hidden;` na div com o id `#container` e ajustes de posições nas funções para fazer com que os elementos do game tenham melhor efeito de entrada e saída da tela;
-* Para o movimento do jogador foram adicionados os comandos de "UP" (seta para cima), "DOWN" (seta para baixo) e "SPACE" (Espaço) como opção para as teclas "W","S" e "D" respectivamente (variável `TECLA`).
+* Para o movimento do jogador foram adicionados os comandos de "UP" (seta para cima), "DOWN" (seta para baixo) e "SPACE" (Espaço) como opção para as teclas "W","S" e "D" respectivamente (variável `TECLA`);
+* Adicionada camada `mobile-buttons` com controles para dispositivos mobile.
 
 ---
 
@@ -49,6 +50,8 @@ Links Interessantes:
 * [JavaScript]
 * [Netlify]
 * [Keycode]
+* [jquery.browser]
+* [jquerymobile]
 
 [dio.me]: https://dio.me/
 [Denilson Bonatti]: https://www.linkedin.com/in/denilson-bonatti-54a14529/
@@ -58,3 +61,5 @@ Links Interessantes:
 [JavaScript]: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Introduction
 [Netlify]: https://www.netlify.com/
 [Keycode]: https://keycode.info/
+[jquery.browser]: https://www.npmjs.com/package/jquery.browser
+[jquerymobile]: https://jquerymobile.com
